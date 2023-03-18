@@ -1,4 +1,4 @@
-package com.yeonhee.domain;
+package com.yeonhee.blog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

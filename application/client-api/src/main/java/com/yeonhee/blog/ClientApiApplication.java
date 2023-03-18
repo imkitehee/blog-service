@@ -1,9 +1,11 @@
-package com.yeonhee.client.api;
+package com.yeonhee.blog;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+@EnableFeignClients
 public class ClientApiApplication {
 
     public static void main(String[] args) {

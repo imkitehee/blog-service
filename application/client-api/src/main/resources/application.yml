@@ -1,0 +1,12 @@
+spring.profiles.include:
+  - common
+  - domain
+
+spring:
+  application:
+    name: blog-service
+
+feign:
+  kakao-api:
+    rest-api-key: a20ec78848ce4ecd73ee5c3c299f2fb4
+    url: dapi.kakao.com
