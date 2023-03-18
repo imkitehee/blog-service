@@ -26,11 +26,13 @@ subprojects {
     group 'com.yeonhee'
 
     ext {
-
+        springCloudVersion = '2021.0.1'
     }
+
     // 서브 모듈 공통 디펜던시
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'com.fasterxml.jackson.core:jackson-databind'
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
         testCompileOnly 'org.projectlombok:lombok'
@@ -79,13 +81,20 @@ project(':application:client-api') {
     bootJar.enabled = true
     jar.enabled = false
 
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+        }
+    }
+
     dependencies {
         implementation project(':domain')
+        implementation project(":common")
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-validation'
         implementation "org.springframework.boot:spring-boot-starter-data-jpa"
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
-        testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
         asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
@@ -97,7 +106,23 @@ project(':domain') {
     bootJar.enabled = false
     jar.enabled = true
 
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+        }
+    }
+
     dependencies {
+        implementation project(":common")
+
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
         runtimeOnly 'com.h2database:h2'
     }
+}
+
+project(':common') {
+    bootJar.enabled = false
+    jar.enabled = true
 }
