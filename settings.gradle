@@ -1,0 +1,6 @@
+rootProject.name = 'blog-service'
+include(
+        "application:client-api",
+        "domain"
+)
+
