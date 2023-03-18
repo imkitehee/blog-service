@@ -1,4 +1,4 @@
-package com.yeonhee.blog;
+package com.yeonhee.blog.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.yeonhee.blog.dto;
 
-import com.yeonhee.blog.SortType;
+import com.yeonhee.blog.type.SortType;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,6 @@
 package com.yeonhee.blog.service.command;
 
-import com.yeonhee.blog.SortType;
+import com.yeonhee.blog.type.SortType;
 import lombok.Getter;
 import lombok.NonNull;
 
