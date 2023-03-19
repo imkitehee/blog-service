@@ -7,6 +7,12 @@ spring:
     name: blog-service
 
 feign:
+  hystrix:
+    enabled: true
   kakao-api:
-    rest-api-key: a20ec78848ce4ecd73ee5c3c299f2fb4
     url: dapi.kakao.com
+    rest-api-key: a20ec78848ce4ecd73ee5c3c299f2fb4
+  naver-api:
+    url: https://openapi.naver.com
+    client-id: V9HvuF3xpQU2pG5zEpmb
+    client-secret: l3sjjIpgO1
