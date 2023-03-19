@@ -2,6 +2,7 @@ package com.yeonhee.blog.search.service;
 
 import com.yeonhee.blog.search.client.kakao.KakaoSearchClient;
 import com.yeonhee.blog.search.client.kakao.dto.KakaoSearchBlogRequest;
+import com.yeonhee.blog.search.client.kakao.dto.KakaoSearchBlogResponse;
 import com.yeonhee.blog.search.client.naver.NaverSearchClient;
 import com.yeonhee.blog.search.client.naver.dto.NaverSearchBlogRequest;
 import com.yeonhee.blog.search.service.dto.SearchBlogRequest;
@@ -17,7 +18,7 @@ public class SearchBlogService {
 
     public SearchBlogResponse search(SearchBlogRequest request) {
 
-        var kakaoBlogs = kakaoSearchClient.searchBlog(KakaoSearchBlogRequest.from(request));
+        KakaoSearchBlogResponse kakaoBlogs = kakaoSearchClient.searchBlog(KakaoSearchBlogRequest.from(request));
 
         return SearchBlogResponse.fromKakao(kakaoBlogs);
      }

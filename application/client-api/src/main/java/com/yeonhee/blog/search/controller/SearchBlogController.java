@@ -1,10 +1,12 @@
 package com.yeonhee.blog.search.controller;
 
 
+import com.yeonhee.blog.ranking.service.RankingService;
 import com.yeonhee.blog.search.dto.SearchRequest;
 import com.yeonhee.blog.response.ApiResponseModel;
 import com.yeonhee.blog.search.service.SearchBlogService;
 import com.yeonhee.blog.search.service.dto.SearchBlogRequest;
+import com.yeonhee.blog.search.service.dto.SearchBlogResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +20,12 @@ import javax.validation.Valid;
 public class SearchBlogController {
 
     private final SearchBlogService searchBlogService;
+    private final RankingService rankingService;
 
     @GetMapping("v1/search/blog")
-    public ResponseEntity<ApiResponseModel> search(@ModelAttribute @Valid SearchRequest searchRequest) {
+    public ResponseEntity<ApiResponseModel<SearchBlogResponse>> search(@ModelAttribute @Valid SearchRequest searchRequest) {
+
+        rankingService.incrementSearchWordScore(searchRequest.getQuery());
 
         var result = searchBlogService.search(
                 SearchBlogRequest.of(searchRequest.getQuery(),
