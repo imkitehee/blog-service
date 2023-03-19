@@ -1,5 +1,6 @@
-package com.yeonhee.blog.client.kakao.config;
+package com.yeonhee.blog.search.client.kakao.config;
 
+import feign.Feign;
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +13,7 @@ public class KakaoClientConfiguration {
     private String restAPIKey;
 
     @Bean
-    public RequestInterceptor requestInterceptor() {
+    public RequestInterceptor kakaoRequestInterceptor() {
         return requestTemplate -> requestTemplate.header("Authorization", "KakaoAK " + restAPIKey);
     }
 }

@@ -1,11 +1,10 @@
-package com.yeonhee.blog.controller;
+package com.yeonhee.blog.search.controller;
 
 
-import com.yeonhee.blog.dto.SearchRequest;
-import com.yeonhee.blog.dto.SearchResponse;
+import com.yeonhee.blog.search.dto.SearchRequest;
 import com.yeonhee.blog.response.ApiResponseModel;
-import com.yeonhee.blog.service.SearchBlogUseCase;
-import com.yeonhee.blog.service.command.SearchBlogCommand;
+import com.yeonhee.blog.search.service.SearchBlogService;
+import com.yeonhee.blog.search.service.dto.SearchBlogRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,18 +17,18 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class SearchBlogController {
 
-    private final SearchBlogUseCase searchBlogUseCase;
+    private final SearchBlogService searchBlogService;
 
     @GetMapping("v1/search/blog")
     public ResponseEntity<ApiResponseModel> search(@ModelAttribute @Valid SearchRequest searchRequest) {
 
-        var result = searchBlogUseCase.search(
-                SearchBlogCommand.of(searchRequest.getQuery(),
+        var result = searchBlogService.search(
+                SearchBlogRequest.of(searchRequest.getQuery(),
                         searchRequest.getPage(),
                         searchRequest.getSize(),
                         searchRequest.getSort()));
 
         return ResponseEntity.ok()
-                .body(ApiResponseModel.success(SearchResponse.fromKakao(result)));
+                .body(ApiResponseModel.success(result));
     }
 }

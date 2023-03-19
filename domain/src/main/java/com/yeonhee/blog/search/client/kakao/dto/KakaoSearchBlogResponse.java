@@ -1,4 +1,4 @@
-package com.yeonhee.blog.client.kakao.dto;
+package com.yeonhee.blog.search.client.kakao.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

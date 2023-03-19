@@ -1,6 +1,6 @@
-package com.yeonhee.blog.dto;
+package com.yeonhee.blog.search.dto;
 
-import com.yeonhee.blog.client.kakao.dto.KakaoSearchBlogResponse;
+import com.yeonhee.blog.search.client.kakao.dto.KakaoSearchBlogResponse;
 import lombok.Builder;
 import lombok.Getter;
 

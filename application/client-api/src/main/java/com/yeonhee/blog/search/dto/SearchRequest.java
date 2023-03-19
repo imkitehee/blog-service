@@ -1,4 +1,4 @@
-package com.yeonhee.blog.dto;
+package com.yeonhee.blog.search.dto;
 
 import com.yeonhee.blog.type.SortType;
 import lombok.Getter;

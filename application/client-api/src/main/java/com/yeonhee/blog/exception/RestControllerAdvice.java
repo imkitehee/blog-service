@@ -23,7 +23,6 @@ public class RestControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> otherException(Exception ex, WebRequest request) {
         log.error("Exception message!", ex);
-
         return ResponseEntity
                 .status(ErrorCode.INTERNAL_SERVER_ERROR.getStatus())
                 .body(ApiResponseModel.error(ErrorCode.INTERNAL_SERVER_ERROR));
@@ -32,7 +31,6 @@ public class RestControllerAdvice extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         log.error("HandleExceptionInternalLException message!", ex);
-
         return ResponseEntity
                 .status(ErrorCode.INTERNAL_SERVER_ERROR.getStatus())
                 .body(ApiResponseModel.error(ErrorCode.INTERNAL_SERVER_ERROR));
