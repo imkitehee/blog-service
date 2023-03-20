@@ -4,6 +4,7 @@ package com.yeonhee.blog.search.controller;
 import com.yeonhee.blog.ranking.service.RankingService;
 import com.yeonhee.blog.search.dto.SearchRequest;
 import com.yeonhee.blog.response.ApiResponseModel;
+import com.yeonhee.blog.search.dto.SearchResponse;
 import com.yeonhee.blog.search.service.SearchBlogService;
 import com.yeonhee.blog.search.service.dto.SearchBlogRequest;
 import com.yeonhee.blog.search.service.dto.SearchBlogResponse;
@@ -23,7 +24,7 @@ public class SearchBlogController {
     private final RankingService rankingService;
 
     @GetMapping("v1/search/blog")
-    public ResponseEntity<ApiResponseModel<SearchBlogResponse>> search(@ModelAttribute @Valid SearchRequest searchRequest) {
+    public ResponseEntity<ApiResponseModel<SearchResponse>> search(@ModelAttribute @Valid SearchRequest searchRequest) {
 
         rankingService.incrementSearchWordScore(searchRequest.getQuery());
 
@@ -34,6 +35,6 @@ public class SearchBlogController {
                         searchRequest.getSort()));
 
         return ResponseEntity.ok()
-                .body(ApiResponseModel.success(result));
+                .body(ApiResponseModel.success(SearchResponse.from(result)));
     }
 }

@@ -16,7 +16,6 @@ public class SearchBlogRequest {
 
     private final SortType sort;
 
-    @Builder
     private SearchBlogRequest(String query, Integer page, Integer size, SortType sort) {
         this.query = query;
         this.page = page;
@@ -25,11 +24,6 @@ public class SearchBlogRequest {
     }
 
     public static SearchBlogRequest of(@NonNull String query, Integer page, Integer size, SortType sort) {
-        return SearchBlogRequest.builder()
-                .query(query)
-                .page(page)
-                .size(size)
-                .sort(sort)
-                .build();
+        return new SearchBlogRequest(query, page, size, sort);
     }
 }

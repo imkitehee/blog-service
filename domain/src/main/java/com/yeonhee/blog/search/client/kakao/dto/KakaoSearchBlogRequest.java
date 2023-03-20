@@ -15,7 +15,6 @@ public class KakaoSearchBlogRequest {
 
     private final String sort;
 
-    @Builder
     private KakaoSearchBlogRequest(String query, Integer page, Integer size, String sort) {
         this.query = query;
         this.page = page;
@@ -25,11 +24,7 @@ public class KakaoSearchBlogRequest {
 
     public static KakaoSearchBlogRequest from(SearchBlogRequest searchBlogCommand) {
 
-        return KakaoSearchBlogRequest.builder()
-                .query(searchBlogCommand.getQuery())
-                .page(searchBlogCommand.getPage())
-                .size(searchBlogCommand.getSize())
-                .sort(searchBlogCommand.getSort().getInKakao())
-                .build();
+        return new KakaoSearchBlogRequest(searchBlogCommand.getQuery(), searchBlogCommand.getPage(),
+                searchBlogCommand.getSize(), searchBlogCommand.getSort().getInKakao());
     }
 }

@@ -68,6 +68,6 @@ public class KakaoSearchBlogResponse {
          * 블로그 글 작성시간
          * [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].000+[tz]
          */
-        private OffsetDateTime datetime;
+        private String datetime;
     }
 }

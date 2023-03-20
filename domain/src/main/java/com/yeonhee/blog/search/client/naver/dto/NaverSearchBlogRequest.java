@@ -15,7 +15,6 @@ public class NaverSearchBlogRequest {
 
     private final String sort;
 
-    @Builder
     private NaverSearchBlogRequest(String query, Integer page, Integer display, String sort) {
         this.query = query;
         this.page = page;
@@ -25,11 +24,7 @@ public class NaverSearchBlogRequest {
 
     public static NaverSearchBlogRequest from(SearchBlogRequest searchBlogCommand) {
 
-        return NaverSearchBlogRequest.builder()
-                .query(searchBlogCommand.getQuery())
-                .page(searchBlogCommand.getPage())
-                .display(searchBlogCommand.getPage())
-                .sort(searchBlogCommand.getSort().getInNaver())
-                .build();
+        return new NaverSearchBlogRequest(searchBlogCommand.getQuery(), searchBlogCommand.getPage(),
+                searchBlogCommand.getSize(), searchBlogCommand.getSort().getInNaver());
     }
 }
