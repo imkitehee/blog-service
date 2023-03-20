@@ -1,0 +1,97 @@
+= 블로그 서비스 API Document
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 5
+:sectlinks: /build/docs/asciidoc/
+:snippets: ../../../build/generated-snippets
+
+== 소개
+
+블로그 서비스 API 명세
+
+== 응답 포맷
+=== 성공 Response Body
+
+[source,options="nowrap"]
+----
+{
+  "success" : true,
+  "message" : null,
+  "code" : null
+  "data" : {...}
+}
+----
+
+|===
+| Field | Type | Description
+
+| `success`
+| Boolean
+| 성공 여부
+
+| `message`
+| String
+| 메세지
+
+| `code`
+| String
+| 서비스 오류 코드
+
+| `data`
+| API 스펙 참고
+| 결과 데이터
+|===
+
+=== 오류 Response Body
+
+[source,options="nowrap"]
+----
+{
+    "success": false,
+    "message": "입력 값이 올바르지 않습니다.",
+    "code": "1001",
+    "data": null
+}
+----
+
+|===
+|Field|Type|Description
+
+| `success`
+| Boolean
+| 성공 여부
+
+| `message`
+| String
+| 메세지
+
+| `code`
+| String
+| 서비스 오류 코드
+
+| `data`
+| String
+| 결과 데이터
+
+|===
+= 블로그
+== 블로그 검색
+:path: {snippets}/v1/search/blog
+
+=== Request Sample
+
+include::{path}/http-request.adoc[]
+
+=== Request Parameters
+
+include::{path}/request-parameters.adoc[]
+
+=== Response Sample
+
+include::{path}/http-response.adoc[]
+
+=== Response Fields
+
+include::{path}/response-fields-beneath-data.adoc[]

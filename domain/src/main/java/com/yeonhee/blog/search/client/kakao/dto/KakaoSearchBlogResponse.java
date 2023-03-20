@@ -1,12 +1,14 @@
 package com.yeonhee.blog.search.client.kakao.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
 @Getter
+@Builder
 public class KakaoSearchBlogResponse {
 
     private Meta meta;
@@ -14,6 +16,7 @@ public class KakaoSearchBlogResponse {
     private List<Document> documents;
 
     @Getter
+    @Builder
     public static class Meta {
 
         /**
@@ -36,6 +39,7 @@ public class KakaoSearchBlogResponse {
     }
 
     @Getter
+    @Builder
     public static class Document {
 
         /**

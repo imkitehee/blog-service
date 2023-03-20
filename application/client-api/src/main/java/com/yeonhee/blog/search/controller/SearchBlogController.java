@@ -7,7 +7,6 @@ import com.yeonhee.blog.response.ApiResponseModel;
 import com.yeonhee.blog.search.dto.SearchResponse;
 import com.yeonhee.blog.search.service.SearchBlogService;
 import com.yeonhee.blog.search.service.dto.SearchBlogRequest;
-import com.yeonhee.blog.search.service.dto.SearchBlogResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +22,7 @@ public class SearchBlogController {
     private final SearchBlogService searchBlogService;
     private final RankingService rankingService;
 
-    @GetMapping("v1/search/blog")
+    @GetMapping("/v1/search/blog")
     public ResponseEntity<ApiResponseModel<SearchResponse>> search(@ModelAttribute @Valid SearchRequest searchRequest) {
 
         rankingService.incrementSearchWordScore(searchRequest.getQuery());

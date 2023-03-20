@@ -42,8 +42,6 @@ public class SearchResponse {
 
         private String blogName;
 
-        private String thumbnail;
-
         private String postDate;
     }
 
