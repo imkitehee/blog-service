@@ -11,8 +11,12 @@
 
 블로그 서비스 API 명세
 
-== 응답 포맷
-=== 성공 Response Body
+== 공통사항
+
+모든 API의 공통 규격입니다.
+
+=== 응답 포맷
+==== 성공 Response Body
 
 [source,options="nowrap"]
 ----
@@ -44,7 +48,7 @@
 | 결과 데이터
 |===
 
-=== 오류 Response Body
+==== 오류 Response Body
 
 [source,options="nowrap"]
 ----
@@ -76,22 +80,38 @@
 | 결과 데이터
 
 |===
-= 블로그
-== 블로그 검색
+
+== API 명세
+=== 블로그 검색
 :path: {snippets}/v1/search/blog
 
-=== Request Sample
+==== Request Sample
 
 include::{path}/http-request.adoc[]
 
-=== Request Parameters
+==== Request Parameters
 
 include::{path}/request-parameters.adoc[]
 
-=== Response Sample
+==== Response Sample
 
 include::{path}/http-response.adoc[]
 
-=== Response Fields
+==== Response Fields
+
+include::{path}/response-fields-beneath-data.adoc[]
+
+=== 인기 검색어 조회
+:path: {snippets}/v1/ranking/search-word
+
+==== Request Sample
+
+include::{path}/http-request.adoc[]
+
+==== Response Sample
+
+include::{path}/http-response.adoc[]
+
+==== Response Fields
 
 include::{path}/response-fields-beneath-data.adoc[]

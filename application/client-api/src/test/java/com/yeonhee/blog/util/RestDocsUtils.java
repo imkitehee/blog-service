@@ -10,13 +10,7 @@ public class RestDocsUtils {
      * 요청 선행 처리 설정.
      */
     public static OperationRequestPreprocessor getDocumentRequest() {
-        return Preprocessors.preprocessRequest(
-                Preprocessors.modifyUris()
-                        .scheme("https")
-                        .host("docs.api.com")
-                        .removePort(),
-                Preprocessors.prettyPrint()
-        );
+        return Preprocessors.preprocessRequest(Preprocessors.prettyPrint());
     }
 
     /**

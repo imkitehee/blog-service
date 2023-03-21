@@ -6,7 +6,7 @@ plugins {
     id 'org.asciidoctor.jvm.convert' version '3.3.2'
 }
 
-group 'com.yeonhee'
+group 'com.yeonhee.blog'
 description = "blog-service-api"
 sourceCompatibility = JavaVersion.VERSION_11
 version '1.0-SNAPSHOT'
@@ -71,6 +71,20 @@ project(':application:client-api') {
         configurations 'asciidoctorExt'
     }
 
+    asciidoctor.doFirst {
+        delete file('src/main/resources/static/docs')
+    }
+
+    task copyDocument(type: Copy) {
+        dependsOn asciidoctor
+        from file("build/docs/asciidoc")
+        into file("src/main/resources/static/docs")
+    }
+
+    build {
+        dependsOn copyDocument
+    }
+
     bootJar {
         dependsOn asciidoctor
         from("${asciidoctor.outputDir}") {
@@ -90,15 +104,12 @@ project(':application:client-api') {
     dependencies {
         implementation project(':domain')
         implementation project(":common")
+
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-validation'
         implementation "org.springframework.boot:spring-boot-starter-data-jpa"
-        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-
         testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-
         asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
-
     }
 }
 
@@ -116,9 +127,10 @@ project(':domain') {
         implementation project(":common")
 
         implementation 'org.springframework.boot:spring-boot-starter-validation'
-        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-        implementation 'it.ozimov:embedded-redis:0.7.2'
         implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+        implementation 'it.ozimov:embedded-redis:0.7.2'
+        implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+        implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix:2.2.5.RELEASE'
     }
 }
 

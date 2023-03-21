@@ -18,7 +18,7 @@ public class FindSearchWordRankingController {
 
     private final RankingService rankingService;
 
-    @GetMapping("v1/ranking/search-word")
+    @GetMapping("/v1/ranking/search-word")
     public ResponseEntity<ApiResponseModel<List<FindSearchWordRankingResponse>>> findSearchWordRanking() {
 
         List<RankingResponse> rankingResponses = rankingService.getSearchWordRanking();

@@ -47,7 +47,7 @@ class SearchBlogControllerTest {
     @Test
     @DisplayName("검색어에 해당하는 블로그 목록을 리턴한다.")
     void search() throws Exception {
-        //given
+        // given
         SearchBlogResponse searchBlogResponse = _블로그_검색.getSearchBlogResponse();
         given(searchBlogService.search(any(SearchBlogRequest.class))).willReturn(searchBlogResponse);
 
@@ -65,6 +65,7 @@ class SearchBlogControllerTest {
                         .andDo(MockMvcResultHandlers.print())
                         .andExpect(status().isOk());
 
+        // then
         resultActions.andDo(
                 document("v1/search/blog",
                         RestDocsUtils.getDocumentRequest(),
@@ -73,7 +74,7 @@ class SearchBlogControllerTest {
                                 parameterWithName("query").description("검색어"),
                                 parameterWithName("page").description("결과 페이지 번호").optional(),
                                 parameterWithName("size").description("한 페이지에 보여질 문서 수").optional(),
-                                parameterWithName("sort").description("결과 문서 정렬 방식(SortType 참조)").optional()
+                                parameterWithName("sort").description("결과 문서 정렬 방식(ACCURACY: 정확도순, RECENCY: 최신순)").optional()
                         ),
                         responseFields(beneathPath("data"),
                                 fieldWithPath("page").type(JsonFieldType.OBJECT).description("pagination 정보"),

@@ -18,8 +18,8 @@ public class _블로그_검색 {
                 .documents(List.of(KakaoSearchBlogResponse.Document.builder()
                         .title("제목입니다.")
                         .contents("내용입니다.")
-                        .blogName("kurly-blog")
-                        .url("http://kurly-blog.com")
+                        .blogName("kite-blog")
+                        .url("http://kite-blog.com")
                         .datetime("2023-03-17T00:18:17.000+09:00")
                         .build()))
                 .build();

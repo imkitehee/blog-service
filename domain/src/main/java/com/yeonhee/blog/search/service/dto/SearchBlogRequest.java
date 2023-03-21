@@ -1,7 +1,6 @@
 package com.yeonhee.blog.search.service.dto;
 
 import com.yeonhee.blog.type.SortType;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NonNull;
 
