@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.Set;
 
 @Service
@@ -32,11 +33,33 @@ public class RedisService {
      * @param key   key
      * @param start 시작 index
      * @param end   마지막 index
-     * @return Set<ZSetOperations.TypedTuple <String>>
+     * @return Set<ZSetOperations.TypedTuple < String>>
      * @see <a href="https://redis.io/commands/zrevrange">Redis Documentation: ZREVRANGE</a>
      */
     public Set<ZSetOperations.TypedTuple<String>> zReverseRangeWithScores(String key, long start, long end) {
         ZSetOperations<String, String> zSetOperations = stringRedisTemplate.opsForZSet();
         return zSetOperations.reverseRangeWithScores(key, start, end);
     }
+
+    /**
+     * TTL 조회
+     *
+     * @param key key
+     * @return ttl(- 2 : 존재하지 않는 key, - 1 : ttl 없음)
+     */
+    public Long getExpire(String key) {
+        return stringRedisTemplate.getExpire(key);
+    }
+
+    /**
+     * TTL 설정
+     *
+     * @param key key
+     * @param ttl 설정할 ttl
+     * @return true: 성공, false: 실패
+     */
+    public Boolean setExpire(String key, Duration ttl) {
+        return stringRedisTemplate.expire(key, ttl);
+    }
+
 }

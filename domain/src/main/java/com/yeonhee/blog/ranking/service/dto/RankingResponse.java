@@ -1,7 +1,6 @@
 package com.yeonhee.blog.ranking.service.dto;
 
 import lombok.Getter;
-import org.springframework.data.redis.core.ZSetOperations;
 
 @Getter
 public class RankingResponse {
@@ -14,8 +13,8 @@ public class RankingResponse {
         this.score = score;
     }
 
-    public static RankingResponse from(ZSetOperations.TypedTuple<String> typedTuple) {
+    public static RankingResponse of(String value, Double score) {
 
-        return new RankingResponse(typedTuple.getValue(), typedTuple.getScore());
+        return new RankingResponse(value, score);
     }
 }

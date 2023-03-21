@@ -22,9 +22,8 @@ public class NaverSearchBlogRequest {
         this.sort = sort;
     }
 
-    public static NaverSearchBlogRequest from(SearchBlogRequest searchBlogCommand) {
+    public static NaverSearchBlogRequest from(SearchBlogRequest request) {
 
-        return new NaverSearchBlogRequest(searchBlogCommand.getQuery(), searchBlogCommand.getPage(),
-                searchBlogCommand.getSize(), searchBlogCommand.getSort().getInNaver());
+        return new NaverSearchBlogRequest(request.getQuery(), request.getPage(), request.getSize(), request.getSort().getInNaver());
     }
 }
