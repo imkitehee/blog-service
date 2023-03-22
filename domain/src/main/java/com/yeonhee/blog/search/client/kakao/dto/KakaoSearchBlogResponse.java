@@ -1,11 +1,15 @@
 package com.yeonhee.blog.search.client.kakao.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.yeonhee.blog.search.client.naver.dto.NaverSearchBlogResponse;
+import com.yeonhee.blog.util.DateTimeUtil;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Builder
@@ -14,6 +18,9 @@ public class KakaoSearchBlogResponse {
     private Meta meta;
 
     private List<Document> documents;
+
+    @Builder.Default
+    private String platform = "kakao";
 
     @Getter
     @Builder
@@ -73,5 +80,33 @@ public class KakaoSearchBlogResponse {
          * [YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].000+[tz]
          */
         private String datetime;
+    }
+
+    public static KakaoSearchBlogResponse fromNaver(NaverSearchBlogResponse response) {
+
+        boolean isEnd = Math.ceil(response.getTotal().doubleValue() / response.getDisplay().doubleValue()) > response.getStart();
+
+        Meta meta = Meta.builder()
+                .totalCount(response.getTotal())
+                .pageableCount(response.getDisplay())
+                .isEnd(isEnd)
+                .build();
+
+        List<Document> documents = response.getItems().stream()
+                .map(document -> Document.builder()
+                        .title(document.getTitle())
+                        .contents(document.getDescription())
+                        .url(document.getLink())
+                        .blogName(document.getBloggerName())
+                        .datetime(LocalDate.parse(document.getPostDate(), DateTimeUtil.DATE_FORMAT).atStartOfDay()
+                                .format(DateTimeUtil.OFFSET_DATE_TIME_FORMAT_DASH))
+                        .build())
+                .collect(Collectors.toList());
+
+        return KakaoSearchBlogResponse.builder()
+                .platform("naver")
+                .meta(meta)
+                .documents(documents)
+                .build();
     }
 }

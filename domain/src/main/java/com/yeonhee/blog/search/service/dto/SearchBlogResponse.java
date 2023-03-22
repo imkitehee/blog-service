@@ -18,9 +18,12 @@ public class SearchBlogResponse {
 
     private final List<Result> results;
 
-    private SearchBlogResponse(Page page, List<Result> results) {
+    private final String platform;
+
+    private SearchBlogResponse(Page page, List<Result> results, String platform) {
         this.page = page;
         this.results = results;
+        this.platform = platform;
     }
 
     @Builder
@@ -61,29 +64,6 @@ public class SearchBlogResponse {
                         .build())
                 .collect(Collectors.toList());
 
-        return new SearchBlogResponse(page, results);
-    }
-
-    public static SearchBlogResponse fromNaver(NaverSearchBlogResponse response) {
-
-        boolean isEnd = Math.ceil(response.getTotal().doubleValue() / response.getDisplay().doubleValue()) > response.getStart();
-
-        Page page = Page.builder()
-                .totalCount(response.getTotal())
-                .pageableCount(response.getDisplay())
-                .isEnd(isEnd)
-                .build();
-
-        List<Result> results = response.getItems().stream()
-                .map(document -> Result.builder()
-                        .title(document.getTitle())
-                        .contents(document.getDescription())
-                        .url(document.getLink())
-                        .blogName(document.getBloggerName())
-                        .postDate(LocalDate.parse(document.getPostDate(), DateTimeUtil.DATE_FORMAT).format(DateTimeUtil.DATE_FORMAT_DASH))
-                        .build())
-                .collect(Collectors.toList());
-
-        return new SearchBlogResponse(page, results);
+        return new SearchBlogResponse(page, results, response.getPlatform());
     }
 }

@@ -1,6 +1,5 @@
 package com.yeonhee.blog.search.client.kakao.config;
 
-import feign.Feign;
 import feign.RequestInterceptor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

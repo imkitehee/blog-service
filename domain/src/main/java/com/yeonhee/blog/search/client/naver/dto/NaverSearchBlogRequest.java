@@ -1,7 +1,6 @@
 package com.yeonhee.blog.search.client.naver.dto;
 
 import com.yeonhee.blog.search.service.dto.SearchBlogRequest;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -9,15 +8,15 @@ public class NaverSearchBlogRequest {
 
     private final String query;
 
-    private final Integer page;
+    private final Integer start;
 
     private final Integer display;
 
     private final String sort;
 
-    private NaverSearchBlogRequest(String query, Integer page, Integer display, String sort) {
+    private NaverSearchBlogRequest(String query, Integer start, Integer display, String sort) {
         this.query = query;
-        this.page = page;
+        this.start = start;
         this.display = display;
         this.sort = sort;
     }
