@@ -12,7 +12,7 @@
         + [2. jar 실행](#2-jar-실행)
     * [빌드 방법(참고 사항)](#빌드-방법--참고-사항)
     * [API 명세](#api-명세)
-        + [[Blog Service API REST Docs](http://localhost:8080/docs/index.html)](#-blog-service-api-rest-docs--http---localhost-8080-docs-indexhtml-)
+        + [Blog Service API REST Docs](http://localhost:8080/docs/index.html)
 - [서비스 소개](#서비스-소개)
     * [공통 기능](#공통-기능)
     * [블로그 검색](#블로그-검색)
