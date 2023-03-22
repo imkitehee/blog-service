@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import redis.embedded.RedisServer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +19,19 @@ class RankingServiceTest {
 
     @Autowired
     RankingService rankingService;
+
+    private static RedisServer redisServer;
+
+    @BeforeAll
+    public static void startRedis() {
+        redisServer = new RedisServer(6379);
+        redisServer.start();
+    }
+
+    @AfterAll
+    public static void stopRedis() {
+        redisServer.stop();
+    }
 
     @Nested
     @DisplayName("검색어 누적 메서드는")

@@ -17,6 +17,13 @@ allprojects {
     }
 }
 
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = true
+}
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'java-library'
@@ -50,6 +57,15 @@ subprojects {
 
     springBoot {
         buildInfo()
+    }
+}
+
+project(':application') {
+    bootJar {
+        enabled = false
+    }
+    jar {
+        enabled = true
     }
 }
 

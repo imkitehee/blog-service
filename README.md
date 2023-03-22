@@ -2,9 +2,15 @@
 블로그 서비스 API를 제공합니다.
 
 ## 기술 스펙
+#### 프로젝트
 - JAVA 11 
 - Spring Boot 2.6
 - Gradle 7.6 
+#### 라이브러리
+- embedded-redis: 내장 인메모리 DB 사용
+- spring-cloud-starter-openfeign: 외부 서비스 호출
+- spring-cloud-starter-netflix-hystrix: Circuit Breaker 구현
+- spring-restdocs-mockmvc: REST Docs 사용
 
 ## Modules 구조 및 의존성
 ```
@@ -17,24 +23,32 @@ blog-service
 │ 
 └── domain
 ```
+1. Application 모듈
+   - 외부에서 접근하는 공개된 API 모듈
+   - 사용 가능한 모듈 : common, domain
+2. Common 모듈
+   - Type, Util 등을 정의한 공통 모듈
+   - 모든 모듈이 해당 모듈을 의존할 수 있어야 한다.
+   - Common은 프로젝트의 어떠한 모듈도 의존하지 않는다
+   - 사용 가능한 모듈 : X
+3. Domain 모듈
+   - Domain, Repository등 데이터 조작과 관련된 책임을 갖는다.
+   - 서비스 비즈니스를 모른다.
+   - 사용 가능한 모듈 : common
 
 ## 실행 방법
-1. blog-service.jar 파일을 다운로드 합니다.
-2. blog-service.jar을 아래와 같이 실행합니다.
 ```bash
-# jar 빌드
-
-# RESTDocs 생성 
-
+# build
+./gradlew clean build -Pprofile=local
+# jar 실행
+cd application/client-api/build/libs/
+java -jar client-api.jar
 ```
 
 ## API 명세
 Blog Service API(http://localhost:8080/docs/index.html)
-* ClientApiApplication 실행 후 확인 가능합니다.
-```bash
-#  
+* jar 실행 후 확인 가능합니다.
 
-```
 
 ## 기능 소개
 ### 공통

@@ -3,6 +3,8 @@ spring.profiles.include:
   - domain
 
 spring:
+  profiles:
+    active: local
   application:
     name: blog-service
   redis:
