@@ -55,11 +55,20 @@ public class RedisService {
      * TTL 설정
      *
      * @param key key
-     * @param ttl 설정할 ttl
+     * @param ttl 설정할 ttl (second)
      * @return true: 성공, false: 실패
      */
-    public Boolean setExpire(String key, Duration ttl) {
-        return stringRedisTemplate.expire(key, ttl);
+    public Boolean setExpire(String key, long ttl) {
+        return stringRedisTemplate.expire(key, Duration.ofSeconds(ttl));
     }
 
+    /**
+     * Key 삭제
+     *
+     * @param key key
+     * @return true: 성공, false: 실패
+     */
+    public Boolean deleteKey(String key) {
+        return stringRedisTemplate.delete(key);
+    }
 }
