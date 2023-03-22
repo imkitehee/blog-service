@@ -42,13 +42,12 @@ blog-service
 ./gradlew clean build -Pprofile=local
 ```
 ## 실행 방법
-### 1. jar 다운로드
+#### 1. jar 다운로드
 https://github.com/imkitehee/blog-service/raw/main/application/client-api/client-api.jar
 
-### 2. jar 실행
+#### 2. jar 실행
 ```bash
-# jar 실행
-cd application/client-api/build/libs/
+# 해당 경로에서 jar 실행
 java -jar client-api.jar
 ```
 
