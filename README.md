@@ -10,7 +10,7 @@
     * [실행 방법](#실행-방법)
         + [1. jar 다운로드](#1-jar-다운로드)
         + [2. jar 실행](#2-jar-실행)
-    * [빌드 방법(참고 사항)](#빌드-방법--참고-사항-))
+    * [빌드 방법(참고 사항)](#빌드-방법--참고-사항)
     * [API 명세](#api-명세)
         + [[Blog Service API REST Docs](http://localhost:8080/docs/index.html)](#-blog-service-api-rest-docs--http---localhost-8080-docs-indexhtml-)
 - [서비스 소개](#서비스-소개)
